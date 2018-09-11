@@ -22,7 +22,7 @@ namespace CheckBkt
                 finally
                 {
                     Console.Write("Повторить? y/n: ");
-                    exit = Console.ReadLine();
+                    exit = Console.ReadLine().ToLower();
                 }
             }
             

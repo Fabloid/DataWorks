@@ -6,6 +6,7 @@ namespace CheckBkt
 {
     public class BktStruct
     {
+        //check brace sequence
         public static string Check(string construction)
         {
             string open = "[{(";
@@ -17,8 +18,7 @@ namespace CheckBkt
                 {'}','{' },
                 {')','(' }
             };
-            Stack<char> state = new Stack<char>();
-            string message = "Cкобочная последовательность корректна";
+            Stack<char> state = new Stack<char>();            
             foreach (var item in construction)
             {
                 if (open.IndexOf(item) != -1)
@@ -63,7 +63,7 @@ namespace CheckBkt
                 throw new Exception("Выражение не содержит скобок");
             }
 
-            return message;
+            return "Cкобочная последовательность корректна";
         }
     }
 }

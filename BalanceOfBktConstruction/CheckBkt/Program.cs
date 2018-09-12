@@ -21,7 +21,7 @@ namespace CheckBkt
                 }
                 finally
                 {
-                    Console.Write("Повторить? y/n: ");
+                    Console.Write("Повторить? (n для выхода): ");
                     exit = Console.ReadLine().ToLower();
                 }
             }

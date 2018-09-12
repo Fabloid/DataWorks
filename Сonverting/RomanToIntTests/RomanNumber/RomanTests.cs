@@ -37,7 +37,10 @@ namespace RomanToInt.RomanNumber.Tests
         public void InputIsNotRomanNumberTest()
         {
             //arrange
-            string expected = "Is not a Roman number ( I=1 V=5 X=10 L=50 C=100 D=500 M=1000 )";
+            string expected = "Does not conform to the rules for the formation of Roman numbers:" +
+                        $"\n1. Should only contain I=1 V=5 X=10 L=50 C=100 D=500 M=1000 " +
+                        "\n2. Less than four characters in a row" +
+                        "\n3. V, L, D can not repeat in a row";
 
             //act
             string actual = null;

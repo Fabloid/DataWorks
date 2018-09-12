@@ -38,7 +38,10 @@ namespace RomanToInt.RomanNumber
                     {
                         s += item.Key + "=" + item.Value+" ";
                     }
-                    throw new Exception($"Is not a Roman number ( {s})");
+                    throw new Exception("Does not conform to the rules for the formation of Roman numbers:" +
+                        $"\n1. Should only contain {s}" +
+                        "\n2. Less than four characters in a row" +
+                        "\n3. V, L, D can not repeat in a row");
                 }
                 else
                     _number = value.ToUpper(); 
@@ -52,7 +55,7 @@ namespace RomanToInt.RomanNumber
             return SumNumbers(temp);
         }
 
-        //converting Roman characters to numbers
+        //converting Roman characters to numbers, record to list
         private List<int> Converting()
         {
             List<int> numbers = new List<int>();
@@ -61,6 +64,7 @@ namespace RomanToInt.RomanNumber
 
             while (i < _number.Length)
             {
+                bool error = false;
                 int current = _values[_number[i]];
                 if (i < _number.Length - 1)
                     next = _values[_number[i + 1]];
@@ -72,8 +76,45 @@ namespace RomanToInt.RomanNumber
                 }
                 else
                 {
-                    numbers.Add(next - current);
-                    i++;
+                    switch (current)
+                    {
+                        case 1:
+                            {
+                                if (next > 10)
+                                    error = true;
+                                break;
+                            }
+                        case 5:
+                            {
+                                error = true;
+                                break;
+                            }
+                        case 10:
+                            {
+                                if (next > 100)
+                                    error = true;
+                                break;
+                            }
+                        case 50:
+                            {
+                                error = true;
+                                break;
+                            }
+                        case 500:
+                            {
+                                error = true;
+                                break;
+                            }
+                    }
+                    if (error)
+                    {
+                        throw new Exception("Invalid order");
+                    }
+                    else
+                    {
+                        numbers.Add(next - current);
+                        i++;
+                    }
                 }
                 i++;
             }
